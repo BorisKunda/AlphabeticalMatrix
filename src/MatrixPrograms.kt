@@ -1,7 +1,7 @@
 object MatrixPrograms {
     @JvmStatic
     fun main(args: Array<String>) {
-        print(grid(4))
+        print(grid(14))
     }
 
     // !!! Exception when gridSize 14
@@ -31,6 +31,7 @@ object MatrixPrograms {
      * R [b] [c] [d]
      * R [c] [d] [e]
      *
+     *
      */
 
 
@@ -38,7 +39,7 @@ object MatrixPrograms {
     todo solve these scenarios
     1. n < 0 - DONE
     2. n = 0 - DONE
-    3. z after a (n>26)
+    3. z after a (n>13)
     4. improve algorithm instead nested loop
      */
 
@@ -54,11 +55,26 @@ fun grid(gridSize: Int): String? {
         for (columnIndex in zeroToGridSizeRange) {
 
             for (rowIndex in zeroToGridSizeRange) {
-                builder.append(arrayAlphabet[columnIndex + rowIndex])
+                try {
+                    val columnRowsIndicesSum = columnIndex + rowIndex
+
+                    if (columnRowsIndicesSum <= 25) {
+                        builder.append(arrayAlphabet[columnIndex + rowIndex])
+                    } else {
+                        //todo grid(recursion)
+                        //a starts after z
+                        //alphabet counter restarts
+                        //current solution solves grid(14) case only
+                        builder.append(arrayAlphabet[0])
+                    }
+                } catch (e: Exception) {
+                }
             }
 
             if (columnIndex != zeroToGridSizeRange.last) {
                 builder.append(newLine)
+            } else {
+                //print("test")
             }
 
         }
@@ -72,17 +88,5 @@ fun grid(gridSize: Int): String? {
 
 }
 
-//        for (outerIndex: IndexedValue<Int> in (0 until n).withIndex()) {
+
 //            print("******************************************\n")
-//            println("OUTER: $outerIndex.index - START\n")
-//
-//            for (innerLoopIndex: Int in outerIndex.index until n + outerIndex.index) {
-//                print("-------------------------\n")
-//                println("INNER: $innerLoopIndex\n")
-//                print("-------------------------\n")
-//                builder.append(arrayAlphabet[innerLoopIndex])
-//            }
-//
-//            println("OUTER: $outerIndex.index - END\n")
-//            print("******************************************\n")
-//        }
