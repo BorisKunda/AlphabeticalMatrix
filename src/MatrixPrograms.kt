@@ -4,8 +4,6 @@ object MatrixPrograms {
         print(grid(14))
     }
 
-    // !!! Exception when gridSize 14
-
     /**
      * ALPHABETICAL GRID
      *
@@ -34,15 +32,37 @@ object MatrixPrograms {
      *
      */
 
-
     /**
-    todo solve these scenarios
-    1. n < 0 - DONE
-    2. n = 0 - DONE
-    3. z after a (n>13)
-    4. improve algorithm instead nested loop
-     */
+    Alphabet
 
+    A - 0
+    B - 1
+    C - 2
+    D - 3
+    E - 4
+    F - 5
+    G - 6
+    H - 7
+    I - 8
+    J - 9
+    K - 10
+    L - 11
+    M - 12
+    N - 13
+    O - 14
+    P - 15
+    Q - 16
+    R - 17
+    S - 18
+    T - 19
+    U - 20
+    V - 21
+    W - 22
+    X - 23
+    Y - 24
+    Z - 25
+
+     */
 
 }
 
@@ -55,26 +75,22 @@ fun grid(gridSize: Int): String? {
         for (columnIndex in zeroToGridSizeRange) {
 
             for (rowIndex in zeroToGridSizeRange) {
-                try {
-                    val columnRowsIndicesSum = columnIndex + rowIndex
+                val columnRowsIndicesSum = columnIndex + rowIndex
+                val quotient = columnRowsIndicesSum / 25
+                val remainder = columnRowsIndicesSum % 25
 
-                    if (columnRowsIndicesSum <= 25) {
-                        builder.append(arrayAlphabet[columnIndex + rowIndex])
-                    } else {
-                        //todo grid(recursion)
-                        //a starts after z
-                        //alphabet counter restarts
-                        //current solution solves grid(14) case only
-                        builder.append(arrayAlphabet[0])
-                    }
-                } catch (e: Exception) {
+                if (columnRowsIndicesSum <= 25) {
+                    builder.append(arrayAlphabet[columnRowsIndicesSum])
+                } else {
+                    //todo
+                    // pay attention! if value of dividend less then divisor then '%' will return dividend value
+                    // check if remainder > 0, if does  for(i in 0 .. remainder) {builder.append(arrayAlphabet[remainder])}
+                    // check if quotient > 1, if does repeat quotient * times for(i2 in 0...25) { builder.append(arrayAlphabet[columnRowsIndicesSum]) }
                 }
             }
 
             if (columnIndex != zeroToGridSizeRange.last) {
                 builder.append(newLine)
-            } else {
-                //print("test")
             }
 
         }
@@ -87,6 +103,3 @@ fun grid(gridSize: Int): String? {
     }
 
 }
-
-
-//            print("******************************************\n")
